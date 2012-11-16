@@ -1,0 +1,29 @@
+{
+  "name": "angular-stickies",
+  "version": "0.1.0-15",
+  "author": "Dave Furfero <furf@furf.com>",
+  "description": "a simple real-time object sharing demo",
+  "scripts": {
+    "start": "node ./server.js"
+  },
+  "main": "./server.js",
+  "keywords": [
+    "angular",
+    "sharejs",
+    "socketio",
+    "realtime",
+    "sockets",
+    "stickies",
+    "notes"
+  ],
+  "dependencies": {
+    "connect": "2.6.x",
+    "share": "https://github.com/furf/ShareJS/tarball/master"
+  },
+  "analyze": false,
+  "license": "MIT",
+  "engines": {
+    "node": ">=0.8"
+  },
+  "subdomain": "angular-stickies"
+}

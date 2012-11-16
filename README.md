@@ -1,2 +1,1 @@
-angular-stickies
-================
+# angular-share

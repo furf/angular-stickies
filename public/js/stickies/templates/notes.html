@@ -1,0 +1,65 @@
+<div
+  ng-mouseup="hideColorMenu()">
+  <nav>
+    <button
+      class="createNote {{activeColor}}"
+      ng-click="create()"
+      title="New Note"><i></i></button>
+    <button
+      class="showMenu {{activeColor}}"
+      ng-mousedown="showColorMenu()"><i></i></button>
+    <ul
+      ng-class="{ visible:colorMenuIsVisible }"
+      ng-mouseleave="setHoveredColor()">
+      <li
+        ng-repeat="color in colors | filter:isNotActiveColor">
+        <button
+          class="{{color}}"
+          ng-class="{ hovered:isHoveredColor(color) }"
+          ng-mouseenter="setHoveredColor(color)"
+          ng-mouseup="setActiveColor(color)"
+          ng-click="setActiveColor(color)"><i></i></button>
+      </li>
+    </ul>
+  </nav>
+  <ul
+    class="notes"
+    ng-dblclick="createFromDblClick($event)">
+    <li
+      ng-repeat="note in notes"
+      class="note {{note.color}}"
+      ng-class="{ minimized:note.isMinimized, focused:isFocused(note), hover:isHovered(note) }"
+      ng-style="{ left:note.x, top:note.y, zIndex:note.z }"
+      ng-mousedown="focus(note)"
+      ng-mouseenter="hover(note)"
+      ng-mouseleave="unhover(note)"
+      ui-draggable="{ handle:'.handle', containment:'window' }"
+      ui-draggable-drag="setPosition(note, $ui.position)">
+      <div
+        class="handle"
+        ng-style="{ width:note.w }"
+        ng-dblclick="minimize(note, $event.metaKey)">
+        <button
+          class="ui-icon ui-icon-close"
+          ng-click="destroy(note)"></button>
+        <div
+          class="preview">{{note.text}}</div>
+      </div>
+      <dl>
+        <dt>minimized</dt>
+        <dd>{{note.isMinimized}}</dd>
+        <dt>focused</dt>
+        <dd>{{isFocused(note)}}</dd>
+        <dt>hovered</dt>
+        <dd>{{isHovered(note)}}</dd>
+      </dl>
+      <div
+        ng-style="{ width:note.w, height:note.h }"
+        ui-resizable
+        ui-resizable-resize="setSize(note, $ui.size)">
+        <div class="text" contenteditable editor ng-model="note.text"></div>
+      </div>
+    </li>
+  </ul>
+
+</div>
